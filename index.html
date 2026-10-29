@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b14">
+<title>CYBER AMIT</title>
+<style>
+:root{--bg:#050b14;--panel:#0a1422;--panel2:#0d1b2d;--blue:#00d9ff;--blue2:#168bff;--text:#e8f7ff;--muted:#8aa6bf;--line:#17344d;--red:#ff647c;--green:#39e6a4}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#10243a 0,transparent 34%),var(--bg);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.hidden{display:none!important}.wrap{width:min(1080px,100%);margin:auto;padding:20px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}.brand{font-size:clamp(22px,4vw,34px);font-weight:900;letter-spacing:2px;color:var(--blue);text-shadow:0 0 18px #00d9ff55}.brand small{display:block;font-size:10px;letter-spacing:4px;color:var(--muted);font-weight:500;margin-top:5px}
+.panel{background:linear-gradient(145deg,#0b1726f5,#07111df5);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 12px 40px #0005}.center{min-height:100vh;display:grid;place-items:center;padding:20px}.login{width:min(420px,100%);text-align:center}.lock{font-size:42px;color:var(--blue);margin-bottom:8px}.muted{color:var(--muted);font-size:13px;line-height:1.6}.field{width:100%;padding:13px 14px;background:#050d18;border:1px solid #23435d;border-radius:9px;color:var(--text);outline:none;margin:7px 0 12px}.field:focus{border-color:var(--blue);box-shadow:0 0 0 3px #00d9ff17}.btn{border:1px solid #00cfff55;background:linear-gradient(100deg,#006e92,#0756a9);color:white;padding:12px 15px;border-radius:9px;font-weight:800;transition:.2s}.btn:hover{filter:brightness(1.2);transform:translateY(-1px)}.btn.secondary{background:#0b1b2b;border-color:#29465e;color:#cdeeff}.btn.danger{background:#351622;border-color:#773046}.full{width:100%}.status{min-height:20px;color:var(--red);font-size:12px;margin-top:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.tool{min-height:140px;text-align:left;display:flex;flex-direction:column;gap:12px;background:linear-gradient(145deg,#0d1c2c,#07111d);border:1px solid var(--line);border-radius:13px;padding:18px;color:var(--text)}.tool:hover,.tool.active{border-color:var(--blue);box-shadow:0 0 22px #00d9ff13}.tool .symbol{font-size:24px;color:var(--blue)}.tool strong{font-size:16px}.tool small{color:var(--muted);line-height:1.5}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:24px 0 12px}.section-title h2{font-size:17px;margin:0}.tag{font-size:10px;border:1px solid #1e4a62;color:var(--blue);padding:5px 8px;border-radius:99px}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:140px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.toolbar button{flex:0 0 auto}.result{background:#030811;border:1px solid #17344d;border-radius:10px;padding:14px;min-height:100px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;color:#a6f4ff;font-size:12px;line-height:1.6}.notice{border-left:3px solid #dca84b;background:#211c10;color:#e9d8a7;padding:11px 13px;border-radius:5px;font-size:12px;line-height:1.55}.success{color:var(--green)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.tabs button.active{border-color:var(--blue);color:var(--blue)}.config-card{border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;background:#07111d}.config-card h3{margin:0 0 12px;font-size:14px}.config-card label{display:block;font-size:11px;color:var(--muted);margin-top:8px}.config-card .field{margin-bottom:4px}.footer{text-align:center;color:#52718a;font-size:11px;padding:28px 0 10px}.pulse{animation:pulse 1.8s infinite}@keyframes pulse{50%{text-shadow:0 0 22px #00d9ff}}@keyframes enter{from{opacity:0;transform:translateY(16px) scale(.99);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}.animate{animation:enter .55s ease-out}
+@media(max-width:560px){.wrap{padding:14px}.panel{padding:15px}.top{align-items:flex-start}.brand{font-size:23px}.toolbar button{flex:1}.section-title{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div id="gate" class="center">
+  <div class="panel login animate">
+    <div class="lock pulse">⌁</div>
+    <div class="brand">CYBER AMIT<small>SECURE ACCESS TERMINAL</small></div>
+    <p class="muted">Enter access password to open the dashboard.</p>
+    <form id="gateForm">
+      <input id="gatePassword" class="field" type="password" placeholder="Enter password" autocomplete="current-password" required>
+      <button class="btn full" type="submit">ENTER THE SYSTEM →</button>
+      <div id="gateStatus" class="status" role="status"></div>
+    </form>
+    <p class="muted">Local demo gate only — not suitable for protecting confidential data.</p>
+  </div>
+</div>
+<div id="app" class="hidden">
+  <main class="wrap animate">
+    <header class="top">
+      <div class="brand">CYBER AMIT<small>JSON API CONSOLE // ONLINE</small></div>
+      <button id="adminOpen" class="btn secondary">⚙ ADMIN PANEL</button>
+    </header>
+    <div class="notice">Use only APIs and data you are authorized to access. This dashboard is a generic JSON API client; it does not collect social-media passwords or imitate official login pages.</div>
+    <div class="section-title"><h2>AVAILABLE TOOLS</h2><span class="tag">CUSTOMIZABLE</span></div>
+    <div id="toolGrid" class="grid"></div>
+    <section id="queryPanel" class="panel hidden" style="margin-top:18px">
+      <div class="section-title" style="margin-top:0"><h2 id="queryTitle">API SEARCH</h2><span class="tag">JSON RESPONSE</span></div>
+      <p id="queryDescription" class="muted">Enter a query and run the configured API.</p>
+      <form id="queryForm">
+        <label class="muted" for="queryInput">Search input</label>
+        <input id="queryInput" class="field" placeholder="Type a query..." required>
+        <button id="searchBtn" class="btn" type="submit">⌕ SEARCH API</button>
+      </form>
+      <div class="section-title"><h2>OUTPUT</h2><div class="toolbar"><button id="copyResult" class="btn secondary" type="button">COPY JSON</button><button id="clearResult" class="btn secondary" type="button">CLEAR</button></div></div>
+      <pre id="result" class="result" aria-live="polite">{ "message": "Select a tool and search to see the API response." }</pre>
+    </section>
+    <section id="adminPanel" class="panel hidden" style="margin-top:18px">
+      <div class="section-title" style="margin-top:0"><h2>ADMIN PANEL</h2><span class="tag">LOCAL SETTINGS</span></div>
+      <div class="notice">Important: settings and API keys are stored in this browser on this device. This is a starter/demo build, not a secure multi-user admin system. Do not use sensitive or paid production API keys here. For production, move secrets and admin authentication to a backend.</div>
+      <div class="tabs" style="margin-top:14px">
+        <button class="btn secondary active" data-tab="buttons" type="button">BUTTONS & API</button>
+        <button class="btn secondary" data-tab="access" type="button">ACCESS PASSWORD</button>
+      </div>
+      <div id="buttonsTab">
+        <p class="muted">Change each button name and configure its API. Supported methods: GET and POST. Use <code>{{query}}</code> in the URL or JSON body to insert the search text.</p>
+        <div id="configList"></div>
+        <div class="toolbar"><button id="addTool" class="btn secondary" type="button">＋ ADD BUTTON</button><button id="saveConfig" class="btn" type="button">SAVE SETTINGS</button><button id="resetConfig" class="btn danger" type="button">RESET DEFAULTS</button></div>
+      </div>
+      <div id="accessTab" class="hidden">
+        <label class="muted" for="newPassword">New entry password</label>
+        <input id="newPassword" class="field" type="password" placeholder="Choose a new password">
+        <button id="savePassword" class="btn" type="button">SAVE PASSWORD</button>
+        <p class="muted">Password is stored locally in this browser. It is a visual gate, not real server-side authentication.</p>
+      </div>
+      <div id="adminStatus" class="status" role="status"></div>
+      <div class="toolbar" style="margin-top:14px"><button id="closeAdmin" class="btn secondary" type="button">CLOSE ADMIN</button></div>
+    </section>
+    <div class="footer">CYBER AMIT • LEARN • BUILD • SECURE<br>Use APIs responsibly and respect their terms of service.</div>
+  </main>
+</div>
+<script>
+const DEFAULT_PASSWORD = "DIMPUU";
+const DEFAULT_TOOLS = [
+ {id:"tool1",name:"Tool 1",description:"Configure an API endpoint in Admin Panel.",url:"",method:"GET",queryParam:"q",keyName:"",apiKey:"",headers:"{}",body:'{"query":"{{query}}"}'},
+ {id:"tool2",name:"Tool 2",description:"Configure an API endpoint in Admin Panel.",url:"",method:"GET",queryParam:"q",keyName:"",apiKey:"",headers:"{}",body:'{"query":"{{query}}"}'},
+ {id:"tool3",name:"Tool 3",description:"Configure an API endpoint in Admin Panel.",url:"",method:"GET",queryParam:"q",keyName:"",apiKey:"",headers:"{}",body:'{"query":"{{query}}"}'}
+];
+let tools = load("ca_tools", DEFAULT_TOOLS);
+let entryPassword = load("ca_password", DEFAULT_PASSWORD);
+let selectedId = null;
+let lastResult = "";
+const $ = id => document.getElementById(id);
+function load(key, fallback){try{const x=localStorage.getItem(key);return x?JSON.parse(x):structuredClone(fallback)}catch{return structuredClone(fallback)}}
+function save(key,value){localStorage.setItem(key,JSON.stringify(value))}
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showGate(){ $("gate").classList.remove("hidden"); $("app").classList.add("hidden"); }
+function enterApp(){ $("gate").classList.add("hidden"); $("app").classList.remove("hidden"); $("app").classList.add("animate"); renderTools(); }
+$("gateForm").addEventListener("submit",e=>{e.preventDefault();if($("gatePassword").value===entryPassword){$("gateStatus").textContent="";enterApp()}else{$("gateStatus").textContent="Access denied. Try again.";$("gatePassword").value=""}});
+function renderTools(){
+ const grid=$("toolGrid");grid.innerHTML="";
+ tools.forEach((t,i)=>{const b=document.createElement("button");b.className="tool"+(selectedId===t.id?" active":"");b.type="button";b.innerHTML=`<span class="symbol">${["⌘","⌬","⟁","⌖","◈","⟡"][i%6]}</span><strong>${escapeHtml(t.name||"Untitled button")}</strong><small>${escapeHtml(t.description||"Search using this API configuration.")}</small><span class="tag" style="align-self:flex-start">${escapeHtml(t.method||"GET")} · JSON</span>`;b.addEventListener("click",()=>selectTool(t.id));grid.appendChild(b)});
+}
+function selectTool(id){selectedId=id;const t=tools.find(x=>x.id===id);if(!t)return;$("queryPanel").classList.remove("hidden");$("queryTitle").textContent=t.name||"API SEARCH";$("queryDescription").textContent=t.description||"Enter a query and run the configured API.";$("queryInput").value="";$("result").textContent=t.url?"Ready. Enter a query to call the configured endpoint.":'{"message":"No API URL configured yet. Open Admin Panel to configure this button."}';lastResult=$("result").textContent;renderTools();$("queryPanel").scrollIntoView({behavior:"smooth",block:"start"})}
+function parseJsonField(str,label){try{return JSON.parse(str||"{}")}catch(e){throw new Error(label+" must be valid JSON.")}}
+$("queryForm").addEventListener("submit",async e=>{
+ e.preventDefault();const t=tools.find(x=>x.id===selectedId);if(!t)return;
+ if(!t.url){showResult({error:"API URL is not configured",hint:"Open Admin Panel and set an API URL for this button."});return}
+ let url=t.url.replaceAll("{{query}}",encodeURIComponent($("queryInput").value));
+ const method=(t.method||"GET").toUpperCase();let headers;
+ try{headers=parseJsonField(t.headers,"Headers")}catch(err){showResult({error:err.message});return}
+ headers=Object.assign({},headers);
+ if(t.keyName&&t.apiKey)headers[t.keyName]=t.apiKey;
+ const options={method,headers};
+ if(method==="GET"||method==="HEAD"){
+   if(t.queryParam&&!t.url.includes("{{query}}")){try{const u=new URL(url);u.searchParams.set(t.queryParam,$("queryInput").value);url=u.toString()}catch{showResult({error:"Invalid API URL. Include https:// and a valid hostname."});return}}
+ }else{
+   if(!headers["Content-Type"]&&!headers["content-type"])headers["Content-Type"]="application/json";
+   try{options.body=(t.body||'{"query":"{{query}}"}').replaceAll("{{query}}",$("queryInput").value);JSON.parse(options.body)}catch(err){showResult({error:"Request body must be valid JSON after replacing {{query}}."});return}
+ }
+ $("searchBtn").disabled=true;$("searchBtn").textContent="REQUESTING…";showResult({status:"loading",message:"Calling API…"});
+ try{
+   const res=await fetch(url,options);const text=await res.text();let data;
+   try{data=JSON.parse(text)}catch{data={raw_response:text}}
+   if(!res.ok)showResult({http_status:res.status,status_text:res.statusText,response:data});
+   else showResult(data);
+ }catch(err){showResult({error:"Request failed",details:err.message,possible_causes:["API server is unavailable","CORS is not enabled by the API","Invalid URL or network issue"],note:"For APIs that block browser requests, use a secure server-side proxy. Never put secret API keys in frontend code."})}
+ finally{$("searchBtn").disabled=false;$("searchBtn").textContent="⌕ SEARCH API"}
+});
+function showResult(data){lastResult=JSON.stringify(data,null,2);$("result").textContent=lastResult}
+$("copyResult").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(lastResult);$("copyResult").textContent="COPIED!";setTimeout(()=>$("copyResult").textContent="COPY JSON",1200)}catch{$("copyResult").textContent="Select JSON to copy"}});
+$("clearResult").addEventListener("click",()=>showResult({message:"Output cleared."}));
+$("adminOpen").addEventListener("click",()=>{renderConfig();$("adminPanel").classList.remove("hidden");$("adminPanel").scrollIntoView({behavior:"smooth",block:"start"})});
+$("closeAdmin").addEventListener("click",()=>$("adminPanel").classList.add("hidden"));
+function renderConfig(){
+ const list=$("configList");list.innerHTML="";
+ tools.forEach((t,i)=>{const d=document.createElement("div");d.className="config-card";d.innerHTML=`
+ <h3>BUTTON ${i+1}</h3>
+ <label>Button name</label><input class="field" data-id="${escapeHtml(t.id)}" data-key="name" value="${escapeHtml(t.name)}" placeholder="e.g. Public IP Lookup">
+ <label>Short description</label><input class="field" data-id="${escapeHtml(t.id)}" data-key="description" value="${escapeHtml(t.description)}" placeholder="What this tool does">
+ <label>API URL (must start with https://)</label><input class="field" data-id="${escapeHtml(t.id)}" data-key="url" value="${escapeHtml(t.url)}" placeholder="https://api.example.com/search">
+ <div class="row"><div><label>HTTP method</label><select class="field" data-id="${escapeHtml(t.id)}" data-key="method"><option ${t.method==="GET"?"selected":""}>GET</option><option ${t.method==="POST"?"selected":""}>POST</option></select></div><div><label>Query parameter (GET only)</label><input class="field" data-id="${escapeHtml(t.id)}" data-key="queryParam" value="${escapeHtml(t.queryParam)}" placeholder="q"></div></div>
+ <label>API key header name (optional, e.g. Authorization or x-api-key)</label><input class="field" data-id="${escapeHtml(t.id)}" data-key="keyName" value="${escapeHtml(t.keyName)}" placeholder="x-api-key">
+ <label>API key value (optional)</label><input class="field" type="password" data-id="${escapeHtml(t.id)}" data-key="apiKey" value="${escapeHtml(t.apiKey)}" placeholder="Enter API key">
+ <label>Extra request headers — JSON object</label><textarea class="field" data-id="${escapeHtml(t.id)}" data-key="headers" rows="2" placeholder='{"Accept":"application/json"}'>${escapeHtml(t.headers||"{}")}</textarea>
+ <label>POST body template — JSON; use {{query}} where query text goes</label><textarea class="field" data-id="${escapeHtml(t.id)}" data-key="body" rows="2">${escapeHtml(t.body||'{"query":"{{query}}"}')}</textarea>
+ <div class="toolbar" style="margin-top:10px"><button class="btn secondary" data-action="test" data-id="${escapeHtml(t.id)}" type="button">USE THIS BUTTON</button><button class="btn danger" data-action="delete" data-id="${escapeHtml(t.id)}" type="button">DELETE BUTTON</button></div>`;
+ list.appendChild(d)});
+ list.querySelectorAll("[data-key]").forEach(el=>el.addEventListener("input",()=>{const t=tools.find(x=>x.id===el.dataset.id);if(t)t[el.dataset.key]=el.value}));
+ list.querySelectorAll("[data-action]").forEach(el=>el.addEventListener("click",()=>{if(el.dataset.action==="test"){selectedId=el.dataset.id;$("adminPanel").classList.add("hidden");selectTool(selectedId)}else{if(tools.length<=1){$("adminStatus").textContent="Keep at least one button.";return}tools=tools.filter(x=>x.id!==el.dataset.id);renderConfig();renderTools()}}));
+}
+$("addTool").addEventListener("click",()=>{tools.push({id:"tool"+Date.now(),name:"New Tool",description:"Configure this API in Admin Panel.",url:"",method:"GET",queryParam:"q",keyName:"",apiKey:"",headers:"{}",body:'{"query":"{{query}}"}'});renderConfig()});
+$("saveConfig").addEventListener("click",()=>{try{tools.forEach(t=>parseJsonField(t.headers,"Headers"));save("ca_tools",tools);renderTools();$("adminStatus").textContent="Settings saved in this browser."; $("adminStatus").className="status success"}catch(err){$("adminStatus").textContent=err.message;$("adminStatus").className="status"}});
+$("resetConfig").addEventListener("click",()=>{if(confirm("Reset all buttons and API settings?")){tools=structuredClone(DEFAULT_TOOLS);save("ca_tools",tools);renderConfig();renderTools();$("adminStatus").textContent="Default settings restored."}});
+document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x===b));$("buttonsTab").classList.toggle("hidden",b.dataset.tab!=="buttons");$("accessTab").classList.toggle("hidden",b.dataset.tab!=="access")}));
+$("savePassword").addEventListener("click",()=>{const p=$("newPassword").value;if(p.length<4){$("adminStatus").textContent="Choose a password with at least 4 characters.";return}entryPassword=p;save("ca_password",entryPassword);$("newPassword").value="";$("adminStatus").textContent="Password updated on this browser."; $("adminStatus").className="status success"});
+// Initial state: password gate only. This is a front-end demo, not a security boundary.
+</script>
+</body>
+</html>
